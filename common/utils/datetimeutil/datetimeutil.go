@@ -11,7 +11,7 @@ var (
 )
 
 func GetDateBeforeToday(days int) time.Time {
-	return time.Now().AddDate(0, 0, days)
+	return time.Now().AddDate(0, 0, -days)
 }
 
 func GetDatetimeBeforeNow(seconds int) time.Time {
@@ -61,11 +61,11 @@ func GetCurrentTimeStr() string {
 }
 
 func GetCurrentTimeUnix() int64 {
-	return GetCurrentTime().Unix()
+	return time.Now().Unix()
 }
 
 func GetCurrentTimeUnixNano() int64 {
-	return GetCurrentTime().UnixNano()
+	return time.Now().UnixNano()
 }
 
 func GetCurrentTime() time.Time {

@@ -36,23 +36,23 @@ func getCallerInfo() string {
 	return "[" + filename + "] => [" + runtime.FuncForPC(pc).Name() + "]:"
 }
 
-func (l CcLogger) Info(s string) {
-	l.Logger.Info(s)
+func (l CcLogger) Info(args ...interface{}) {
+	l.Logger.Info(args)
 }
 
-func (l CcLogger) Debug(s string) {
+func (l CcLogger) Debug(args ...interface{}) {
 	fmt.Println(getCallerInfo())
-	l.Logger.Debug(s)
+	l.Logger.Debug(args)
 }
 
-func (l CcLogger) Error(s string) {
+func (l CcLogger) Error(args ...interface{}) {
 	fmt.Println(getCallerInfo())
-	l.Logger.Error(s)
+	l.Logger.Error(args)
 }
 
-func (l CcLogger) Panic(s string) {
+func (l CcLogger) Panic(args string) {
 	fmt.Println(getCallerInfo())
-	panic(s)
+	panic(args)
 }
 
 var (

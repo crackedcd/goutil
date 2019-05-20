@@ -33,25 +33,24 @@ type CcLogger struct {
 
 func getCallerInfo() string {
 	pc, filename, _, _ := runtime.Caller(2)
-	return "[" + filename + "] => [" + runtime.FuncForPC(pc).Name() + "]:"
+	return "at: [" + filename + "] => [" + runtime.FuncForPC(pc).Name() + "]"
 }
 
-func (l CcLogger) Info(args ...interface{}) {
-	l.Logger.Info(args)
+func (l *CcLogger) Info(args ...interface{}) {
+	l.Logger.Info(args...)
 }
 
-func (l CcLogger) Debug(args ...interface{}) {
+func (l *CcLogger) Debug(args ...interface{}) {
+	l.Logger.Debug(args...)
 	fmt.Println(getCallerInfo())
-	l.Logger.Debug(args)
 }
 
-func (l CcLogger) Error(args ...interface{}) {
+func (l *CcLogger) Error(args ...interface{}) {
+	l.Logger.Error(args...)
 	fmt.Println(getCallerInfo())
-	l.Logger.Error(args)
 }
 
-func (l CcLogger) Panic(args string) {
-	fmt.Println(getCallerInfo())
+func (l *CcLogger) Panic(args string) {
 	panic(args)
 }
 
